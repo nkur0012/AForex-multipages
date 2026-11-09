@@ -1,0 +1,137 @@
+/*general page styling*/
+*{ box-sizing: border-box;
+}
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.6em;
+}
+:root{
+    --primary-color: navy ;
+    --secondary-color: gold;
+    --background-color: grey;
+    --text-color:black;
+}
+
+    body{
+        background-color: var(--background-color);
+        color: var(--text-color);
+    }
+    header{
+        background-color: var(--primary-color);
+        color: white;
+        padding: 1.5rem;
+    }
+    footer{
+        background-color: var(--primary-color);
+        color: white;
+        padding: 1.5rem;
+}
+h1, h2{
+    background-color: var(--primary-color);
+    color: white;
+    }
+    header,footer{
+        padding: 1.5rem;
+    }
+    nav{
+        display: flex;
+        flex-direction:column;
+        gap: 1.5em;
+        flex-wrap:wrap;
+        padding:1rem;
+        background-color:var(--secondary-color);}
+
+        nav a{
+            color:var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+         }
+         nav a:hover,
+         nav a:focus {
+            text-decoration:underline;
+        }
+        /*desktop navigation*/
+        @media (min-width:48rem) {
+            nav {
+                flex-direction: row;
+            }
+            }
+            /*keyboard accessibility*/
+            a:focus,
+            button:focus,
+            input:focus,
+            select:focus,
+            textarea:focus{
+                outline: 3px solid orange;
+                outline-offset: 3px;
+            }
+            /*skip link*/
+            .skip-link{
+                position:absolute;
+                top: -40px;
+                left: 0;
+                background-color: black;
+                color: white;
+                padding: 0.75rem;
+                z-index:1000;
+            }
+            .skip-link:focus{
+                top: 0;
+            }
+            /*responsive heading size*/
+            h1{
+                font-size: clamp(1.6rem,4vw,2.2rem);
+            }
+            h2{
+                font-size: clamp(1.3rem,3vw,1.8rem);
+            }
+            h3{
+                font-size:1.2rem;
+            }
+            p, li, a, label, input, select, textarea, button {
+    font-size: 1rem;
+}
+
+    /*css grid for all pages*/
+
+    body{
+        display:grid;
+        grid-template-columns:minmax(0,1fr);
+        grid-template-areas: 
+        "header"
+        "nav"
+        "main"
+        "footer";
+    }
+    header{
+        grid-area:header;
+    }
+    nav{
+        grid-area:nav;
+    }
+
+    main{
+        grid-area:main;
+        width:100%;
+        max-width:70rem;
+        margin: 0 auto;
+        padding:1rem;
+    }
+    footer{
+        grid-area: footer;
+    }
+    /*wider screen*/
+    @media(min-width:48rem ) body{
+        grid-template-columns:1fr minmax(0,70rem) 1rem;
+        grid-template-areas::after
+       "header header header"
+        "nav nav nav"
+         ".main."
+          "footer footer footer"
+    }
+
+
+
