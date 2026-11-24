@@ -1,86 +1,138 @@
 /*general page styling*/
-*{ box-sizing: border-box;
+* {
+    box-sizing: border-box;
 }
-body{
+
+body {
     margin: 0;
     font-family: Arial, sans-serif;
-    font-size: 0.9rem;
+    font-size: var(--font-size-body);
     line-height: 1.6em;
 }
-:root{
-    --primary-color: navy ;
+
+:root {
+    --primary-color: navy;
     --secondary-color: gold;
     --background-color: grey;
-    --text-color:black;
+    --text-color: black;
+    /*spacing*/
+
+    --spacing-xs: 0.25rem;
+    --spacing-small: 0.5rem;
+    --spacing-medium: 1rem;
+    --spacing-large: 1.5rem;
+    --spacing-xlarge: 2rem;
+    /*typography*/
+    --font-family: Arial, sans-serif;
+    --font-size-body: 1rem;
+    --font-size-heading: 2rem;
 }
 
-    body{
-        background-color: var(--background-color);
-        color: var(--text-color);
+/*dark-theme*/
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #1a1a1a;
+        --secondary-color: #333333;
+        --background-color: #121212;
+        --text-color: #ffffff;
     }
-    header{
-        background-color: var(--primary-color);
-        color: white;
-        padding: 1.5rem;
-    }
-    footer{
-        background-color: var(--primary-color);
-        color: white;
-        padding: 1.5rem;
 }
-h1, h2{
+
+
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: var(--font-size-body);
+    line-height: 1.6em;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+
+header {
     background-color: var(--primary-color);
     color: white;
-    }
-    header,footer{
-        padding: 1.5rem;
-    }
-    nav{
-        display: flex;
-        flex-direction:column;
-        gap: 1.5em;
-        flex-wrap:wrap;
-        padding:1rem;
-        background-color:var(--secondary-color);}
+    padding: var(--spacing-large);
+}
 
-        nav a{
-            color:var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9rem;
-         }
-         nav a:hover,
-         nav a:focus {
-            text-decoration:underline;
-        }
-        /*desktop navigation*/
-        @media (min-width:48rem) {
-            nav {
-                flex-direction: row;
-            }
-            }
-            /*keyboard accessibility*/
-            a:focus-visible,
-            button:focus-visible,
-            input:focus-visible,
-            select:focus-visible,
-            textarea:focus-visible{
-                outline: 3px solid black;
-                outline-offset: 3px;
-            }
-            /*skip link*/
-            .skip-link{
-                position:absolute;
-                top: -100px;
-                left: 0;
-                background-color: black;
-                color: white;
-                padding: 0.75rem;
-                z-index:1000;
-            }
-            .skip-link:focus-visible{
-                top: 1rem;
-            }
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--spacing-medium);
+}
+
+h1,
+h2 {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+header,
+footer {
+    padding: var(--spacing-large);
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+    flex-wrap: wrap;
+    padding: var(--spacing-medium);
+    background-color: var(--nav-background);
+}
+
+& a {
+    color: var(--navigation-text);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: var(--font-size-body);
+}
+
+nav a:hover,
+nav a:focus {
+    text-decoration: underline;
+}
+
+/*highlighed navigation*/
+.nav-highlight {
+    --navigation-background-color: #333333;
+    --navigation-text: #ffffff;
+
+}
+
+/*desktop navigation*/
+@media (min-width:48rem) {
+    nav {
+        flex-direction: row;
+    }
+}
+
+/*keyboard accessibility*/
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid black;
+    outline-offset: 3px;
+}
+
+/*skip link*/
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background-color: black;
+    color: white;
+    padding: 0.75rem;
+    z-index: 1000;
+}
+
+.skip-link:focus-visible {
+    top: 1rem;
+}
+
 /* visually hidden content */
 .visually-hidden {
     position: absolute;
@@ -96,58 +148,74 @@ h1, h2{
 
 
 
-            /*responsive heading size*/
-            h1{
-                font-size: clamp(1.6rem,4vw,2.2rem);
-            }
-            h2{
-                font-size: clamp(1.3rem,3vw,1.8rem);
-            }
-            h3{
-                font-size:1.2rem;
-            }
-            p, li, a, label, input, select, textarea, button {
-    font-size: 1rem;
+/*responsive heading size*/
+h1 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
 }
 
-    /*css grid for all pages*/
+h2 {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+}
 
-    body{
-        display:grid;
-        grid-template-columns:minmax(0,1fr);
-        grid-template-areas: 
+h3 {
+    font-size: 1.2rem;
+}
+
+p,
+li,
+a,
+label,
+input,
+select,
+textarea,
+button {
+    font-size: var(--font-size-body);
+}
+
+/*css grid for all pages*/
+
+body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
         "header"
         "nav"
         "main"
         "footer";
-    }
-    header{
-        grid-area:header;
-    }
-    nav{
-        grid-area:nav;
-    }
+}
 
-    main{
-        grid-area:main;
-        width:100%;
-        max-width:70rem;
-        margin: 0 auto;
-        padding:1rem;
-    }
-    footer{
-        grid-area: footer;
-    }
-    /*wider screen*/
-    @media(min-width:48rem ) body{
-        grid-template-columns:1fr minmax(0,70rem) 1rem;
-        grid-template-areas::after
-       "header header header"
+header {
+    grid-area: header;
+}
+
+nav {
+    grid-area: nav;
+}
+
+main {
+    grid-area: main;
+    width: 100%;
+    max-width: 70rem;
+    margin: 0 auto;
+    padding: var(--spacing-medium);
+}
+
+footer {
+    grid-area: footer;
+}
+
+/*wider screen*/
+@media(min-width:48rem) body {
+    grid-template-columns: 1fr minmax(0, 70rem) 1rem;
+    grid-template-areas: :after
+        "header header header"
         "nav nav nav"
-         ".main."
-          "footer footer footer"
-    }
-    @media (prefers-reduced-motion: reduce) {
+        ".main."
+        "footer footer footer"
+}
+
+@media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -157,6 +225,3 @@ h1, h2{
         transition-duration: 0.01ms !important;
     }
 }
-
-
-
